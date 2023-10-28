@@ -5,8 +5,9 @@
 **Description:**
 Kubeaks is a tools to help you switch between AKS cluster, even though the cluster just created.
 
-**How cluster switch happen**
-1. it will read from `~/.kubeconfig`
+## **How cluster switch happen**
+1. Firstly, it will use `~/.kubeconfig` to login into the cluster.
+2. If error, `kubeaks` will try to authenticate using Azure SDK, and write the login into `~/.kubeconfig`.
 
 ## **Tools commands:**
 * [COMMAND] $ kubeaks init
