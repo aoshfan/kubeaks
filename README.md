@@ -43,3 +43,17 @@ the information later will be saved in _~/.kubeaks.yaml_
         name: rg-aks-dev-red
     ```
 
+## Manual way of switch AKS cluster
+```
+# 1. set subscription
+$ az account set --subscription 12345678-1234-1234-1234-1234567890ab
+
+# 2. Get AKS cluster credentials by specifing RG & AKS name
+$ az aks get-credentials --resource-group dev --name blue
+
+# 3. After getting the credentials, we use kubelogin
+$ kubelogin convert-kubeconfig -l azurecli
+
+# 4. verify
+$ kubectl get namespaces
+```
