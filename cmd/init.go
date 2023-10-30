@@ -6,14 +6,49 @@ package cmd
 import (
 	"fmt"
 	"os"
+	"strconv"
 
 	"github.com/spf13/cobra"
+	"gopkg.in/yaml.v3"
 )
 
 var (
 	kubeAksConfigFilePath string
 	kubeAksConfigFileName string = ".kubeaks.yaml"
 )
+
+type AksConfigData struct {
+	Name string `yaml:"name"`
+	Azure struct {
+		Subscription   string `yaml:"subscription"`
+		ResourceGroup  string `yaml:"resourceGroup"`
+		ClusterName    string `yaml:"clusterName"`
+	} `yaml:"azure"`
+	Kubeconfig struct {
+		Name2 string `yaml:"kubeConfigName"`
+	} `yaml:"kubeconfig"`
+}
+
+func getUserInput(prompt string) string {
+	var input string
+	fmt.Print(prompt)
+	fmt.Scan(&input)
+	return input
+}
+
+func getPositiveIntInput(prompt string) int {
+	var input string
+	for {
+		fmt.Print(prompt)
+		fmt.Scan(&input)
+		num, err := strconv.Atoi(input)
+		if err == nil && num > 0 {
+			return num
+		}
+		fmt.Println("Please enter a positive integer.")
+		os.Exit(1)
+	}
+}
 
 // initCmd represents the init command
 var initCmd = &cobra.Command{
@@ -44,9 +79,54 @@ to quickly create a Cobra application.`,
 			os.Exit(1)
 		}
 		fmt.Println("File not exists yet")
-		// todo: interactive user input using survey ?
-		// todo: output as yaml
-		// todo: loop again the interactive user input
+
+		var configs []AksConfigData
+
+		// Prompt the user for the number of configurations to enter
+    var numConfigs int = getPositiveIntInput("Enter the number of configurations: ")		
+	
+		for i := 0; i < numConfigs; i++ {
+			name := getUserInput("Enter name: ")
+			subscription := getUserInput("Enter subscription: ")
+			resourceGroup := getUserInput("Enter resourceGroup: ")
+			clusterName := getUserInput("Enter clusterName: ")
+			kubeConfigName := getUserInput("Enter kubeconfig name: ")
+	
+			config := AksConfigData{
+				Name: name,
+				Kubeconfig: struct {
+					Name2 string `yaml:"kubeConfigName"`
+				}{
+					Name2: kubeConfigName,
+				},
+				Azure: struct {
+					Subscription   string `yaml:"subscription"`
+					ResourceGroup  string `yaml:"resourceGroup"`
+					ClusterName    string `yaml:"clusterName"`
+				}{
+					Subscription:   subscription,
+					ResourceGroup:  resourceGroup,
+					ClusterName:    clusterName,
+				},
+			}
+	
+			configs = append(configs, config)
+		}
+	
+		yamlData, err := yaml.Marshal(&configs)
+		if err != nil {
+			fmt.Println("Error marshaling data to YAML:", err)
+			return
+		}
+	  
+		// Write the YAML data to the output.yaml file
+		err = os.WriteFile("output.yaml", yamlData, 0644)
+		if err != nil {
+			fmt.Println("Error writing to output.yaml:", err)
+			return
+		}
+	
+		fmt.Println("YAML data written to 'output.yaml'")
 	},
 }
 
