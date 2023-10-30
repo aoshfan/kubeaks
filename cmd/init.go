@@ -52,7 +52,7 @@ func getPositiveIntInput(prompt string) int {
 
 // initCmd represents the init command
 var initCmd = &cobra.Command{
-	// todo: fix Short & Long
+	// todo: fix Short & Long description
 	Use:   "init",
 	Short: "A brief description of your command",
 	Long: `A longer description that spans multiple lines and likely contains examples
