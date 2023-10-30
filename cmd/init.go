@@ -84,7 +84,7 @@ to quickly create a Cobra application.`,
 		var configs []AksConfigData
 
 		// Prompt the user for the number of configurations to enter
-    var numConfigs int = getPositiveIntInput("Enter the number of configurations: ")		
+		var numConfigs int = getPositiveIntInput("Enter the number of configurations: ")		
 	
 		for i := 0; i < numConfigs; i++ {
 			name := getUserInput("Enter name: ")
