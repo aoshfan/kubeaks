@@ -25,7 +25,7 @@ type AksConfigData struct {
 		ClusterName    string `yaml:"clusterName"`
 	} `yaml:"azure"`
 	Kubeconfig struct {
-		Name2 string `yaml:"kubeConfigName"`
+		KubeConfigName string `yaml:"kubeConfigName"`
 	} `yaml:"kubeconfig"`
 }
 
@@ -96,9 +96,9 @@ to quickly create a Cobra application.`,
 			config := AksConfigData{
 				Name: name,
 				Kubeconfig: struct {
-					Name2 string `yaml:"kubeConfigName"`
+					KubeConfigName string `yaml:"kubeConfigName"`
 				}{
-					Name2: kubeConfigName,
+					KubeConfigName: kubeConfigName,
 				},
 				Azure: struct {
 					Subscription   string `yaml:"subscription"`
