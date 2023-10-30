@@ -120,6 +120,7 @@ to quickly create a Cobra application.`,
 			return
 		}
 	  
+		// todo: change the output.yaml to $HOME/.kubeaks.yaml
 		// Write the YAML data to the output.yaml file
 		err = os.WriteFile("output.yaml", yamlData, 0644)
 		if err != nil {
