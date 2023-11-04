@@ -6,7 +6,7 @@ package cmd
 import (
 	"fmt"
 	"os"
-	"strconv"
+	"strings"
 
 	"github.com/spf13/cobra"
 	"gopkg.in/yaml.v3"
@@ -34,20 +34,6 @@ func getUserInput(prompt string) string {
 	fmt.Print(prompt)
 	fmt.Scan(&input)
 	return input
-}
-
-func getPositiveIntInput(prompt string) int {
-	var input string
-	for {
-		fmt.Print(prompt)
-		fmt.Scan(&input)
-		num, err := strconv.Atoi(input)
-		if err == nil && num > 0 {
-			return num
-		}
-		fmt.Println("Please enter a positive integer.")
-		os.Exit(1)
-	}
 }
 
 // initCmd represents the init command
@@ -83,10 +69,7 @@ to quickly create a Cobra application.`,
 
 		var configs []AksConfigData
 
-		// Prompt the user for the number of configurations to enter
-		var numConfigs int = getPositiveIntInput("Enter the number of configurations: ")		
-	
-		for i := 0; i < numConfigs; i++ {
+		for {
 			name := getUserInput("Enter name: ")
 			subscription := getUserInput("Enter subscription: ")
 			resourceGroup := getUserInput("Enter resourceGroup: ")
@@ -112,12 +95,27 @@ to quickly create a Cobra application.`,
 			}
 	
 			configs = append(configs, config)
+			
+			fmt.Println("Add another config ? Press 'n' for no, else continue")
+			var userInputAddConfig string
+
+			_, err := fmt.Scan(&userInputAddConfig)
+			if err != nil {
+				fmt.Println("Error reading input:", err)
+				os.Exit(1)
+			}
+
+			userInputAddConfig = strings.ToLower(userInputAddConfig)
+
+			if userInputAddConfig == "n" {
+				break
+			}
 		}
 	
 		yamlData, err := yaml.Marshal(&configs)
 		if err != nil {
 			fmt.Println("Error marshaling data to YAML:", err)
-			return
+			os.Exit(1)
 		}
 	  
 		// todo: change the output.yaml to $HOME/.kubeaks.yaml
@@ -125,7 +123,7 @@ to quickly create a Cobra application.`,
 		err = os.WriteFile("output.yaml", yamlData, 0644)
 		if err != nil {
 			fmt.Println("Error writing to output.yaml:", err)
-			return
+			os.Exit(1)
 		}
 	
 		fmt.Println("YAML data written to 'output.yaml'")
