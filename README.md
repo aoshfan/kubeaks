@@ -1,3 +1,15 @@
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=aoshfan_kubeaks&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=aoshfan_kubeaks)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=aoshfan_kubeaks&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=aoshfan_kubeaks)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=aoshfan_kubeaks&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=aoshfan_kubeaks)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=aoshfan_kubeaks&metric=bugs)](https://sonarcloud.io/summary/new_code?id=aoshfan_kubeaks)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=aoshfan_kubeaks&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=aoshfan_kubeaks)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=aoshfan_kubeaks&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=aoshfan_kubeaks)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=aoshfan_kubeaks&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=aoshfan_kubeaks)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=aoshfan_kubeaks&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=aoshfan_kubeaks)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=aoshfan_kubeaks&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=aoshfan_kubeaks)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=aoshfan_kubeaks&metric=coverage)](https://sonarcloud.io/summary/new_code?id=aoshfan_kubeaks)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=aoshfan_kubeaks&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=aoshfan_kubeaks)  
+
 # kubeaks
 
 **Name:** Kubeaks
