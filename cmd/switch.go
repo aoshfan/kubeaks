@@ -136,8 +136,10 @@ to quickly create a Cobra application.`,
 
 		// Run kubelogin
 		fmt.Println(kubeloginPath)
+
 		// todo: kubeconfig path take from output.yaml
-		cmdKubelogin := exec.Command("kubelogin", "convert-kubeconfig --kubeconfig=kubeconfig.yaml -l azurecli")
+		// todo: try using Stdin, Stdout, Stderr :D
+		cmdKubelogin := exec.Command("kubelogin", "convert-kubeconfig", "--kubeconfig", "kubeconfig.yaml", "-l", "azurecli")
 		// cmdKubelogin.Stdin = os.Stdin
 		// cmdKubelogin.Stdout = os.Stdout
 		// cmdKubelogin.Stderr = os.Stderr
