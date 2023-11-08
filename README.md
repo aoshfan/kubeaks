@@ -73,3 +73,10 @@ $ kubelogin convert-kubeconfig -l azurecli
 # 4. verify
 $ kubectl get namespaces
 ```
+
+## Working command
+**Init**  
+`go run main.go init`
+
+**Switch**  
+`go run main.go cluster switch --clustername e-b-d`
